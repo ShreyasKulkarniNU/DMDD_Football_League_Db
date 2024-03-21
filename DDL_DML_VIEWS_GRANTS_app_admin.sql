@@ -341,3 +341,87 @@ ALTER TABLE ticket
 ALTER TABLE ticket
     ADD CONSTRAINT ticket_stadium_fk FOREIGN KEY ( stadium_id )
         REFERENCES stadium ( stadium_id );
+
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB001', 'OWN001', 'Arsenal',28, 'MNG001');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB002', 'OWN002', 'Manchester United',32, 'MNG002');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB003', 'OWN003', 'Manchester City',32, 'MNG003');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB004', 'OWN004', 'Liverpool',30, 'MNG004');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB005', 'OWN005', 'Tottenham',28, 'MNG005');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB006', 'OWN006', 'Chelsea FC', 24, 'MNG006');
+
+
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR001', 'CLB001', 'Theory','Henry',10,'Attacker',100,111,199,11,1,1000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR002', 'CLB001', 'Robin','Van Persie',7,'Attacker',111,150,100,6,2,1100000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR003', 'CLB001', 'Andrew','Arshavin',9,'Attacker',101,100,219,11,0,1000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR004', 'CLB001', 'Ben','White',5,'Defender',60,111,189,31,21,1000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR005', 'CLB001', 'Gabriel','Jesus',7,'MidFielder',60,111,189,12,2,1000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR006', 'CLB002', 'Cristiano','Ronaldo',7,'Attacker',200,291,199,17,7,10000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR007', 'CLB002', 'Wayne','Roony',10,'MidFielder',210,201,299,12,1,10000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR008', 'CLB002', 'Harry','Maguire',4,'Defender',200,91,99,22,2,10000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR009', 'CLB002', 'Robin','VonderSaar',1,'GoalKeeper',210,21,100,06,1,10000000);
+
+
+INSERT INTO attacker (player_id, attacker_role, number_of_shots, number_of_dribbles, top_sprint_Speed) VALUES ('PLR001', 'Striker',320, 250, 86); 
+INSERT INTO attacker (player_id, attacker_role, number_of_shots, number_of_dribbles, top_sprint_Speed) VALUES ('PLR002', 'Striker',1111,2110,89);
+INSERT INTO attacker (player_id, attacker_role, number_of_shots, number_of_dribbles, top_sprint_Speed) VALUES ('PLR003', 'Striker',300, 230, 80);
+
+INSERT INTO defender (player_id, defender_role, number_of_interception, number_of_blocks, number_of_sliding_tackles) VALUES ('PLR004', 'RightBack',150, 80, 40); 
+INSERT INTO defender (player_id, defender_role, number_of_interception, number_of_blocks, number_of_sliding_tackles) VALUES ('PLR008', 'centerBack',140, 85, 35); 
+
+
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB001', 20, 600, 5, 3, 1000000);
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB002', 25, 650, 4, 2, 1500000);
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB003', 18, 550, 6, 4, 900000);
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB004', 22, 620, 3, 1, 1200000);
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB005', 17, 500, 7, 5, 800000);
+INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB006', 19, 560, 2, 2, 950000);
+
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT001', TO_DATE('2024-04-01', 'YYYY-MM-DD'), '3-1', 'STD001', TO_DATE('14:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT002', TO_DATE('2024-04-02', 'YYYY-MM-DD'), '2-2', 'STD002', TO_DATE('17:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT003', TO_DATE('2024-04-03', 'YYYY-MM-DD'), '0-1', 'STD003', TO_DATE('19:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT004', TO_DATE('2024-04-04', 'YYYY-MM-DD'), '4-0', 'STD004', TO_DATE('21:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT005', TO_DATE('2024-04-05', 'YYYY-MM-DD'), '1-3', 'STD005', TO_DATE('16:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT006', TO_DATE('2024-04-06', 'YYYY-MM-DD'), '2-0', 'STD006', TO_DATE('18:00', 'HH24:MI'));
+
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC001', 'MAT001', 'CLB001');
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC002', 'MAT001', 'CLB002');
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC003', 'MAT002', 'CLB003');
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC004', 'MAT002', 'CLB004');
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC005', 'MAT003', 'CLB005');
+INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC006', 'MAT003', 'CLB006');
+
+--revenue of the club through merchandise
+CREATE VIEW revenue_of_the_club_through_merchandise AS
+SELECT
+  c.club_id,
+  c.club_name,
+  SUM(m.price) AS total_revenue,
+  COUNT(m.item_no) AS items_sold,
+  (SELECT category FROM merchandise m2 WHERE m2.club_id = c.club_id GROUP BY m2.category ORDER BY COUNT(*) DESC FETCH FIRST 1 ROW ONLY) AS top_selling_category
+FROM club c
+JOIN merchandise m ON c.club_id = m.club_id
+GROUP BY c.club_id, c.club_name
+ORDER BY total_revenue DESC;
+
+-- player_PerformanceTrack_Attacker_Individual_View
+CREATE or REPLACE VIEW player_PerformanceTrack_Attacker_Individual_View 
+AS 
+SELECT 
+pl.first_name || ' '|| pl.last_name as NAME, 
+pl.number_of_matches as Total_Played,
+pl.number_of_goals as Total_Goals_Scored,
+pl.number_of_assists as Total_Assists,
+pa.attacker_role,
+pa.number_of_Shots as Total_Shots,
+pa.top_sprint_Speed as Highest_Pace
+from 
+player pl 
+join
+attacker pa ON pl.player_id = pa.player_id;
+
+GRANT SELECT ON ticket_sales_match_wise TO analyst;
+GRANT SELECT ON match_summary_view TO analyst;
+
+GRANT SELECT ON match TO customer_access;
+GRANT SELECT ON club TO customer_access;
+GRANT SELECT ON merchandise TO customer_access;
