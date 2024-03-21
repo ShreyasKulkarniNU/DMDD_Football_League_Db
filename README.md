@@ -10,5 +10,6 @@ Steps to re-run these scripts:
 7. Execute the `Data_del_App_Admin_Management.sql` script as `app_admin` user
 8. Now, disconnect the `app_admin` user connection from the left pane
 9.  And then, run the `user_del_admin.sql` as default `ADMIN` user (DBA)
-10. Follow from step 2 and repeat all the steps
+10. Follow from step 2 and repeat all the steps 
+    Note: While re-running, for step 3 - You can reconnect the existing `app_admin` user, you don't need to create a new connection for `app_admin` user again
 
