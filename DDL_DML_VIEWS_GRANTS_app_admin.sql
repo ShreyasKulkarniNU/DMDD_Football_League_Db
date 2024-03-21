@@ -342,6 +342,39 @@ ALTER TABLE ticket
     ADD CONSTRAINT ticket_stadium_fk FOREIGN KEY ( stadium_id )
         REFERENCES stadium ( stadium_id );
 
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN001', 1000000, 500000, 'John', 'Doe'); 
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN002', 1500000, 700000, 'Jane', 'Smith'); 
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN003', 800000, 400000, 'David', 'Jones');
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN004', 2000000, 900000, 'Emily', 'Brown'); 
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN005', 1200000, 600000, 'Michael', 'Wilson'); 
+INSERT INTO owner (owner_id, net_worth, investment_in_club, first_name, last_name) VALUES ('OWN006', 1800000, 850000, 'Jessica', 'Garcia');
+
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM001', 200, 'English', 'Martin', 'Tyler');
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM002', 180, 'Spanish', 'Carlos', 'Martinez');
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM003', 150, 'French', 'Thierry', 'Henry');
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM004', 170, 'German', 'Thomas', 'Muller');
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM005', 160, 'Italian', 'Gianluca', 'Vialli');
+INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM006', 190, 'Portuguese', 'Luis', 'Figo');
+
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM001', 'MAT001', 'COM001');
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM002', 'MAT001', 'COM002');
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM003', 'MAT003', 'COM003');
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM004', 'MAT003', 'COM004');
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM005', 'MAT002', 'COM005');
+INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM006', 'MAT002', 'COM006');
+
+INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR009', 'Attacking',500, 150, 20); 
+--INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR010', 'Deffensive',400, 150, 20); 
+
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC001', 'CLB001', 'United Jersey 2024', 'River Brown','Apparel', 90);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC002', 'CLB002', 'Barca Scarf 2024', 'Jamie Williams', 'Accessory', 20);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC003', 'CLB003', 'Liverpool Mug', 'Casey Smith','Accessory', 15);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC004', 'CLB004', 'Madrid Cap', 'Alex Brown','Accessory', 25);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC005', 'CLB005', 'Milan Keychain', 'Morgan Williams', 'Accessory', 10);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC006', 'CLB006', 'Chelsea Backpack', 'Jordan Davis','Apparel', 110);
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC007', 'CLB004', 'Madrid Flag', 'River Miller','Accessories', 18.00); 
+INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC008', 'CLB004', 'Madrid Keychain', 'Jamie Miller','Accessories', 5.50); 
+
 INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB001', 'OWN001', 'Arsenal',28, 'MNG001');
 INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB002', 'OWN002', 'Manchester United',32, 'MNG002');
 INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB003', 'OWN003', 'Manchester City',32, 'MNG003');
@@ -419,9 +452,37 @@ player pl
 join
 attacker pa ON pl.player_id = pa.player_id;
 
+--match summary view
+CREATE VIEW match_summary_view AS
+SELECT
+  m.match_id,
+  m.match_date,
+  m.time,
+  s.stadium_name,
+  mc.club_id,
+  ms.match_goals,
+  ms.match_penalties,
+  ms.match_fouls,
+  pt.rank AS club_position_in_the_points_table
+FROM match m
+JOIN stadium s ON m.stadium_id = s.stadium_id
+JOIN match_stat ms ON m.match_id = ms.match_id
+JOIN match_club mc ON m.match_id = mc.match_id
+JOIN points_table pt ON mc.club_id = pt.club_id
+GROUP BY m.match_id, m.match_date, m.time, s.stadium_name, mc.club_id, ms.match_goals, ms.match_penalties, ms.match_fouls, pt.rank
+ORDER BY m.match_date, m.time;
+
+
 GRANT SELECT ON ticket_sales_match_wise TO analyst;
 GRANT SELECT ON match_summary_view TO analyst;
+GRANT SELECT ON revenue_of_the_club_through_merchandise TO analyst;
+GRANT SELECT ON player_PerformanceTrack_Attacker_Individual_View TO analyst;
+
 
 GRANT SELECT ON match TO customer_access;
 GRANT SELECT ON club TO customer_access;
 GRANT SELECT ON merchandise TO customer_access;
+GRANT SELECT ON ticket TO customer_access;
+GRANT SELECT ON stadium TO customer_access;
+GRANT SELECT ON match_stat TO customer_access;
+
