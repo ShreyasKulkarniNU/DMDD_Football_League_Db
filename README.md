@@ -5,7 +5,9 @@ Steps to setup the database:
 4. After successful `app_admin` user creation, execute the `DDL_DML_VIEWS_GRANTS_app_admin.sql` script as `app_admin` user
 5. Once step 4 is executed completely, all the DDL, DML, Views, Users and grants commands will be executed for our project.
 
+
 Steps to re-run these scripts:
+
 6. Suppose, if you want to RE-RUN these scripts, you should run the below clean-up scripts (Data_del_App_Admin_Management.sql, user_del_admin.sql).
 7. Execute the `Data_del_App_Admin_Management.sql` script as `app_admin` user.
 8. Now, disconnect the `app_admin` user connection from the left pane.
