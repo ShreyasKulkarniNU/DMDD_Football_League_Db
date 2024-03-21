@@ -356,6 +356,20 @@ INSERT INTO commentator (commentator_id, number_of_matches_commentated, language
 INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM005', 160, 'Italian', 'Gianluca', 'Vialli');
 INSERT INTO commentator (commentator_id, number_of_matches_commentated, language, first_name, last_name) VALUES ('COM006', 190, 'Portuguese', 'Luis', 'Figo');
 
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD001', 'Old Trafford', 'Manchester', 76000, 105, 75000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD002', 'Camp Nou', 'Barcelona', 99354, 110, 90000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD003', 'Wembley', 'London', 90000, 105, 85000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD004', 'San Siro', 'Milan', 80018, 105, 78000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD005', 'Anfield', 'Liverpool', 54074, 101, 53000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD006', 'Santiago Bernabeu', 'Madrid', 81044, 107, 80000);
+
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT001', TO_DATE('2024-04-01', 'YYYY-MM-DD'), '3-1', 'STD001', TO_DATE('14:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT002', TO_DATE('2024-04-02', 'YYYY-MM-DD'), '2-2', 'STD002', TO_DATE('17:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT003', TO_DATE('2024-04-03', 'YYYY-MM-DD'), '0-1', 'STD003', TO_DATE('19:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT004', TO_DATE('2024-04-04', 'YYYY-MM-DD'), '4-0', 'STD004', TO_DATE('21:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT005', TO_DATE('2024-04-05', 'YYYY-MM-DD'), '1-3', 'STD005', TO_DATE('16:00', 'HH24:MI'));
+INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT006', TO_DATE('2024-04-06', 'YYYY-MM-DD'), '2-0', 'STD006', TO_DATE('18:00', 'HH24:MI'));
+
 INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM001', 'MAT001', 'COM001');
 INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM002', 'MAT001', 'COM002');
 INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM003', 'MAT003', 'COM003');
@@ -363,11 +377,21 @@ INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MC
 INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM005', 'MAT002', 'COM005');
 INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MCOM006', 'MAT002', 'COM006');
 
-INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR009', 'Attacking',500, 150, 20); 
---INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR010', 'Deffensive',400, 150, 20); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG001', 'John', 'Doe', 5, 3); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG002', 'Jane', 'Smith', 4, 2); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG003', 'David', 'Jones', 6, 4); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG004', 'Emily', 'Brown', 7, 5);
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG005', 'Michael', 'Wilson', 3, 2); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG006', 'Jessica', 'Garcia', 4, 3); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG007', 'Daniel', 'Martinez', 5, 4); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG008', 'Sophia', 'Lopez', 2, 1); 
 
-INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR005','Central-Attacking',91,280,398,20,10,90);
-INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR007','Central-Defensive',85,250,378,25,5,92);
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB001', 'OWN001', 'Arsenal',28, 'MNG001');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB002', 'OWN002', 'Manchester United',32, 'MNG002');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB003', 'OWN003', 'Manchester City',32, 'MNG003');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB004', 'OWN004', 'Liverpool',30, 'MNG004');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB005', 'OWN005', 'Tottenham',28, 'MNG005');
+INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB006', 'OWN006', 'Chelsea FC', 24, 'MNG006');
 
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC001', 'CLB001', 'United Jersey 2024', 'River Brown','Apparel', 90);
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC002', 'CLB002', 'Barca Scarf 2024', 'Jamie Williams', 'Accessory', 20);
@@ -377,14 +401,6 @@ INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, pric
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC006', 'CLB006', 'Chelsea Backpack', 'Jordan Davis','Apparel', 110);
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC007', 'CLB004', 'Madrid Flag', 'River Miller','Accessories', 18.00); 
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC008', 'CLB004', 'Madrid Keychain', 'Jamie Miller','Accessories', 5.50); 
-
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB001', 'OWN001', 'Arsenal',28, 'MNG001');
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB002', 'OWN002', 'Manchester United',32, 'MNG002');
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB003', 'OWN003', 'Manchester City',32, 'MNG003');
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB004', 'OWN004', 'Liverpool',30, 'MNG004');
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB005', 'OWN005', 'Tottenham',28, 'MNG005');
-INSERT INTO club (club_id, owner_id, club_name, number_of_players, manager_id) VALUES ('CLB006', 'OWN006', 'Chelsea FC', 24, 'MNG006');
-
 
 INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR001', 'CLB001', 'Theory','Henry',10,'Attacker',100,111,199,11,1,1000000);
 INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR002', 'CLB001', 'Robin','Van Persie',7,'Attacker',111,150,100,6,2,1100000);
@@ -396,6 +412,11 @@ INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, pl
 INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR008', 'CLB002', 'Harry','Maguire',4,'Defender',200,91,99,22,2,10000000);
 INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR009', 'CLB002', 'Robin','VonderSaar',1,'GoalKeeper',210,21,100,06,1,10000000);
 
+INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR005','Central-Attacking',91,280,398,20,10,90);
+INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR007','Central-Defensive',85,250,378,25,5,92);
+
+INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR009', 'Attacking',500, 150, 20); 
+--INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR010', 'Deffensive',400, 150, 20); 
 
 INSERT INTO attacker (player_id, attacker_role, number_of_shots, number_of_dribbles, top_sprint_Speed) VALUES ('PLR001', 'Striker',320, 250, 86); 
 INSERT INTO attacker (player_id, attacker_role, number_of_shots, number_of_dribbles, top_sprint_Speed) VALUES ('PLR002', 'Striker',1111,2110,89);
@@ -412,28 +433,12 @@ INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_pl
 INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB005', 17, 500, 7, 5, 800000);
 INSERT INTO club_data (club_id, number_of_trophies, number_of_wins, number_of_players_purchased, number_of_players_sold, club_budget) VALUES ('CLB006', 19, 560, 2, 2, 950000);
 
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT001', TO_DATE('2024-04-01', 'YYYY-MM-DD'), '3-1', 'STD001', TO_DATE('14:00', 'HH24:MI'));
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT002', TO_DATE('2024-04-02', 'YYYY-MM-DD'), '2-2', 'STD002', TO_DATE('17:00', 'HH24:MI'));
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT003', TO_DATE('2024-04-03', 'YYYY-MM-DD'), '0-1', 'STD003', TO_DATE('19:00', 'HH24:MI'));
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT004', TO_DATE('2024-04-04', 'YYYY-MM-DD'), '4-0', 'STD004', TO_DATE('21:00', 'HH24:MI'));
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT005', TO_DATE('2024-04-05', 'YYYY-MM-DD'), '1-3', 'STD005', TO_DATE('16:00', 'HH24:MI'));
-INSERT INTO match (match_id, match_date, result, stadium_id, time) VALUES ('MAT006', TO_DATE('2024-04-06', 'YYYY-MM-DD'), '2-0', 'STD006', TO_DATE('18:00', 'HH24:MI'));
-
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC001', 'MAT001', 'CLB001');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC002', 'MAT001', 'CLB002');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC003', 'MAT002', 'CLB003');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC004', 'MAT002', 'CLB004');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC005', 'MAT003', 'CLB005');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC006', 'MAT003', 'CLB006');
-
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG001', 'John', 'Doe', 5, 3); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG002', 'Jane', 'Smith', 4, 2); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG003', 'David', 'Jones', 6, 4); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG004', 'Emily', 'Brown', 7, 5);
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG005', 'Michael', 'Wilson', 3, 2); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG006', 'Jessica', 'Garcia', 4, 3); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG007', 'Daniel', 'Martinez', 5, 4); 
-INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG008', 'Sophia', 'Lopez', 2, 1); 
 
 INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB001', 1, 38, 30, 5, 3, 0, 'CLB001_2024', '2024');
 INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB002', 2, 38, 28, 7, 3, 0, 'CLB002_2024', '2024');
@@ -455,13 +460,6 @@ INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF003', 'M
 INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF004', 'MAT002', 'REF004');
 INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF005', 'MAT003', 'REF005');
 INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF006', 'MAT003', 'REF006');
-
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD001', 'Old Trafford', 'Manchester', 76000, 105, 75000);
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD002', 'Camp Nou', 'Barcelona', 99354, 110, 90000);
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD003', 'Wembley', 'London', 90000, 105, 85000);
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD004', 'San Siro', 'Milan', 80018, 105, 78000);
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD005', 'Anfield', 'Liverpool', 54074, 101, 53000);
-INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD006', 'Santiago Bernabeu', 'Madrid', 81044, 107, 80000);
 
 INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK001', 'STD001', 50, 101, 'Standard', TO_DATE('2024-03-30', 'YYYY-MM-DD'), 'Sold', 'Credit Card', 'John Doe', 'MAT001');
 INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK002', 'STD002', 55, 102, 'Standard', TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Sold', 'Debit Card', 'Alice Johnson', 'MAT002');
