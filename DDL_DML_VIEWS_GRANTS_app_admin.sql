@@ -366,6 +366,9 @@ INSERT INTO match_commentator (mat_com_id, match_id, commentator_id) VALUES ('MC
 INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR009', 'Attacking',500, 150, 20); 
 --INSERT INTO goal_keeper (player_id, goalie_type, number_of_saves, number_of_cleansheets, penalties_rating) VALUES ('PLR010', 'Deffensive',400, 150, 20); 
 
+INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR005','Central-Attacking',91,280,398,20,10,90);
+INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR007','Central-Defensive',85,250,378,25,5,92);
+
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC001', 'CLB001', 'United Jersey 2024', 'River Brown','Apparel', 90);
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC002', 'CLB002', 'Barca Scarf 2024', 'Jamie Williams', 'Accessory', 20);
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC003', 'CLB003', 'Liverpool Mug', 'Casey Smith','Accessory', 15);
@@ -422,6 +425,75 @@ INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC003', 'MAT002
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC004', 'MAT002', 'CLB004');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC005', 'MAT003', 'CLB005');
 INSERT INTO match_club (mat_club_id, match_id, club_id) VALUES ('MC006', 'MAT003', 'CLB006');
+
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG001', 'John', 'Doe', 5, 3); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG002', 'Jane', 'Smith', 4, 2); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG003', 'David', 'Jones', 6, 4); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG004', 'Emily', 'Brown', 7, 5);
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG005', 'Michael', 'Wilson', 3, 2); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG006', 'Jessica', 'Garcia', 4, 3); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG007', 'Daniel', 'Martinez', 5, 4); 
+INSERT INTO manager (manager_id, first_name, last_name, number_of_coaches, number_of_clubs_managed) VALUES ('MNG008', 'Sophia', 'Lopez', 2, 1); 
+
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB001', 1, 38, 30, 5, 3, 0, 'CLB001_2024', '2024');
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB002', 2, 38, 28, 7, 3, 0, 'CLB002_2024', '2024');
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB003', 3, 38, 26, 8, 4, 0, 'CLB003_2024', '2024');
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB004', 4, 38, 25, 9, 4, 0, 'CLB004_2024', '2024');
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB005', 5, 38, 24, 10, 4, 0, 'CLB005_2024', '2024');
+INSERT INTO points_table (club_id, rank, matches_played, matches_won, matches_lost, matches_drawn, no_result, season_club_sk, season) VALUES ('CLB006', 6, 38, 23, 11, 4, 0, 'CLB006_2024', '2024');
+
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF001', 'Mark', 'Clattenburg', 12, 300, 25);
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF002', 'Howard', 'Webb', 15, 400, 30);
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF003', 'Pierluigi', 'Collina', 20, 500, 5);
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF004', 'Felix', 'Brych', 10, 250, 20);
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF005', 'Cüneyt', 'Çakır', 13, 350, 22);
+INSERT INTO refree (refree_id, first_name, last_name, years_of_experience, number_of_games_officiated, number_of_red_cards) VALUES ('REF006', 'Björn', 'Kuipers', 14, 320, 18);
+
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF001', 'MAT001', 'REF001');
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF002', 'MAT001', 'REF002');
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF003', 'MAT002', 'REF003');
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF004', 'MAT002', 'REF004');
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF005', 'MAT003', 'REF005');
+INSERT INTO match_refree (mat_ref_sk, match_id, refree_id) VALUES ('MREF006', 'MAT003', 'REF006');
+
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD001', 'Old Trafford', 'Manchester', 76000, 105, 75000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD002', 'Camp Nou', 'Barcelona', 99354, 110, 90000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD003', 'Wembley', 'London', 90000, 105, 85000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD004', 'San Siro', 'Milan', 80018, 105, 78000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD005', 'Anfield', 'Liverpool', 54074, 101, 53000);
+INSERT INTO stadium (stadium_id, stadium_name, city, capacity, "SIZE", attendance) VALUES ('STD006', 'Santiago Bernabeu', 'Madrid', 81044, 107, 80000);
+
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK001', 'STD001', 50, 101, 'Standard', TO_DATE('2024-03-30', 'YYYY-MM-DD'), 'Sold', 'Credit Card', 'John Doe', 'MAT001');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK002', 'STD002', 55, 102, 'Standard', TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Sold', 'Debit Card', 'Alice Johnson', 'MAT002');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK003', 'STD003', 60, 103, 'Premium', TO_DATE('2024-04-01', 'YYYY-MM-DD'), 'Available', 'Cash', 'Bob Smith', 'MAT003');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK004', 'STD001', 65, 104, 'VIP', TO_DATE('2024-03-30', 'YYYY-MM-DD'), 'Available', 'Credit Card', 'Carol White', 'MAT001');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK005', 'STD002', 50, 105, 'Standard', TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Sold', 'Credit Card', 'Dave Green', 'MAT002');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK006', 'STD003', 55, 106, 'Standard', TO_DATE('2024-04-01', 'YYYY-MM-DD'), 'Sold', 'Debit Card', 'Eva Black', 'MAT003');
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK007', 'STD001', 75, 104, 'Regular', TO_DATE('2024-03-30', 'YYYY-MM-DD'), 'Available', 'Credit Card', 'Alicia Joe', 'MAT001'); 
+INSERT INTO ticket (ticket_id, stadium_id, ticket_price, seat_number, ticket_type, sale_date, ticket_status, payment_method, buyer_name, match_id) VALUES ('TCK008', 'STD002', 85, 204, 'Premium', TO_DATE('2024-03-31', 'YYYY-MM-DD'), 'Available', 'Credit Card', 'Mary Jane', 'MAT002');
+
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT001', 4, 1, 10);
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT002', 4, 0, 12);
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT003', 1, 0, 8);
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT004', 4, 1, 11);
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT005', 4, 0, 9);
+INSERT INTO match_stat (match_id, match_goals, match_penalties, match_fouls) VALUES ('MAT006', 2, 0, 10);
+
+commit;
+
+--ticket sales per match view
+CREATE VIEW ticket_sales_match_wise AS
+SELECT
+  m.match_id,
+  m.match_date,
+  s.stadium_name,
+  s.city,
+  COUNT(t.ticket_id) AS tickets_sold
+FROM match m
+JOIN stadium s ON m.stadium_id = s.stadium_id
+JOIN ticket t ON m.match_id = t.match_id
+GROUP BY m.match_id, m.match_date, s.stadium_name, s.city
+ORDER BY m.match_date;
 
 --revenue of the club through merchandise
 CREATE VIEW revenue_of_the_club_through_merchandise AS
