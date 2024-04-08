@@ -542,6 +542,38 @@ JOIN points_table pt ON mc.club_id = pt.club_id
 GROUP BY m.match_id, m.match_date, m.time, s.stadium_name, mc.club_id, ms.match_goals, ms.match_penalties, ms.match_fouls, pt.rank
 ORDER BY m.match_date, m.time;
 
+-- View to calculate revenue for each item sold
+CREATE VIEW Merchandise_Items_View AS
+SELECT 
+    m.club_id,
+    m.item_name,
+    m.price,
+    COUNT(*) AS quantity_sold,
+    COUNT(*) * m.price AS total_revenue
+FROM 
+    merchandise m
+GROUP BY 
+    m.item_no, m.club_id, m.item_name, m.price;
+
+--This view categorizes merchandise items based on their price range, which can help with pricing strategies.
+CREATE OR REPLACE VIEW MerchandisePriceRange AS
+SELECT
+    CASE
+        WHEN price < 50 THEN 'Low Price'
+        WHEN price BETWEEN 50 AND 100 THEN 'Medium Price'
+        ELSE 'High Price'
+    END AS price_range,
+    COUNT(*) AS count
+FROM merchandise
+GROUP BY
+    CASE
+        WHEN price < 50 THEN 'Low Price'
+        WHEN price BETWEEN 50 AND 100 THEN 'Medium Price'
+        ELSE 'High Price'
+    END;
+
+
+
 
 GRANT SELECT ON ticket_sales_match_wise TO analyst;
 GRANT SELECT ON match_summary_view TO analyst;
@@ -555,4 +587,11 @@ GRANT SELECT ON merchandise TO customer_access;
 GRANT SELECT ON ticket TO customer_access;
 GRANT SELECT ON stadium TO customer_access;
 GRANT SELECT ON match_stat TO customer_access;
+
+
+
+
+
+
+
 
