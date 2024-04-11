@@ -573,6 +573,45 @@ GROUP BY
     END;
 
 
+CREATE OR REPLACE PROCEDURE INSERT_MERCHANDISE (
+    p_item_no      IN VARCHAR2,
+    p_club_id      IN VARCHAR2,
+    p_item_name    IN VARCHAR2,
+    p_buyer_name   IN VARCHAR2,
+    p_category     IN VARCHAR2,
+    p_price        IN NUMBER
+)
+IS
+    v_club_count NUMBER;
+BEGIN
+ -- Check for the correct number of arguments
+    IF NOT (p_item_no IS NOT NULL AND p_club_id IS NOT NULL AND p_item_name IS NOT NULL AND p_buyer_name IS NOT NULL AND p_category IS NOT NULL AND p_price IS NOT NULL) THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Error inserting merchandise: Incorrect number or types of arguments.');
+    END IF;
+
+    -- Check for valid club ID
+    BEGIN
+        SELECT COUNT(*) INTO v_club_count FROM club WHERE club_id = p_club_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20002, 'Error inserting merchandise: Invalid club ID.');
+    END;
+
+    IF v_club_count = 0 THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Error inserting merchandise: Invalid club ID.');
+    END IF;
+
+    -- Insert merchandise
+    INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price)
+    VALUES (p_item_no, p_club_id, p_item_name, p_buyer_name, p_category, p_price);
+EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Error inserting merchandise: Duplicate item number or club ID.');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Error inserting merchandise: ' || SQLERRM);
+END INSERT_MERCHANDISE;
+/
+
 
 
 GRANT SELECT ON ticket_sales_match_wise TO analyst;
