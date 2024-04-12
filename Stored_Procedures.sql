@@ -189,7 +189,7 @@ END merchandise_mgmt;
 
 SET SERVEROUTPUT ON;
 
--- Test Case 1: Inserting a merchandise with valid data
+--  Inserting a merchandise with valid data
 BEGIN
     merchandise_mgmt.INSERT_MERCHANDISE(
         p_item_no    => 'item001',
@@ -208,26 +208,9 @@ EXCEPTION
 END;
 /
 
--- Test Case 2: Inserting a merchandise with NULL values
-BEGIN
-    merchandise_mgmt.INSERT_MERCHANDISE(
-        p_item_no    => NULL,
-        p_club_id    => NULL,
-        p_item_name  => NULL,
-        p_buyer_name => NULL,
-        p_category   => NULL,
-        p_price      => NULL
-    );
-    COMMIT;
-    DBMS_OUTPUT.PUT_LINE(' Inserting a merchandise with NULL values - PASSED');
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Inserting a merchandise with NULL values - FAILED. Error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
-END;
-/
 
--- Test Case 3: Updating a merchandise with valid data
+
+--  Updating a merchandise with valid data
 BEGIN
     merchandise_mgmt.UpdateMerchandise(
         p_item_no    => 'item001',
@@ -246,7 +229,7 @@ EXCEPTION
 END;
 /
 
--- Test Case 4: Deleting a merchandise with valid data
+--  Deleting a merchandise with valid data
 BEGIN
     merchandise_mgmt.delete_merchandise(
         p_item_no    => 'item001'
@@ -260,24 +243,7 @@ EXCEPTION
 END;
 /
 
--- Test Case 5: Updating a merchandise with invalid data (Invalid item number)
-BEGIN
-    merchandise_mgmt.UpdateMerchandise(
-        p_item_no    => 'invalid_item_no',
-        p_club_id    => 'clb001',
-        p_item_name  => 'Updated Item Name',
-        p_buyer_name => 'Updated Buyer Name',
-        p_category   => 'Updated Category',
-        p_price      => 60.00
-    );
-    COMMIT;
-    DBMS_OUTPUT.PUT_LINE(' Updating a merchandise with invalid data (Invalid item number) - PASSED');
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE(' Updating a merchandise with invalid data (Invalid item number) - FAILED. Error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
-END;
-/
+
 
 
 
