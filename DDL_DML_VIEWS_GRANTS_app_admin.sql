@@ -613,6 +613,77 @@ END INSERT_MERCHANDISE;
 /
 
 
+CREATE OR REPLACE PROCEDURE UpdateMerchandise (
+    p_item_no           IN VARCHAR2,
+    p_club_id           IN VARCHAR2,
+    p_item_name         IN VARCHAR2,
+    p_buyer_name        IN VARCHAR2,
+    p_category          IN VARCHAR2,
+    p_price             IN NUMBER
+)
+IS
+BEGIN
+ -- Check if the item exists
+ IF p_item_no IS NULL OR p_club_id IS NULL OR p_item_name IS NULL OR p_buyer_name IS NULL OR p_category IS NULL OR p_price IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20004, 'One or more input parameters are null.');
+    END IF;
+
+    -- Check for invalid values
+    IF p_price <= 0 THEN
+        RAISE_APPLICATION_ERROR(-20005, 'Price must be a positive value.');
+    END IF;
+
+    -- Check if the item exists
+    DECLARE
+        v_item_count INTEGER;
+    BEGIN
+        SELECT COUNT(*)
+        INTO v_item_count
+        FROM merchandise
+        WHERE item_no = p_item_no;
+
+        IF v_item_count = 0 THEN
+            RAISE_APPLICATION_ERROR(-20001, 'Item does not exist.');
+        END IF;
+    END;
+
+    -- Check if the club exists
+    DECLARE
+        v_club_count INTEGER;
+    BEGIN
+        SELECT COUNT(*)
+        INTO v_club_count
+        FROM club
+        WHERE club_id = p_club_id;
+
+        IF v_club_count = 0 THEN
+            RAISE_APPLICATION_ERROR(-20002, 'Club does not exist.');
+        END IF;
+    END;
+
+    -- Update the merchandise
+    UPDATE merchandise
+    SET
+        club_id = p_club_id,
+        item_name = p_item_name,
+        buyer_name = p_buyer_name,
+        category = p_category,
+        price = p_price
+    WHERE item_no = p_item_no;
+
+    -- Commit the transaction
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Merchandise updated successfully.');
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20003, 'No data found.');
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20000, 'An error occurred: ' || SQLERRM);
+END UpdateMerchandise;
+/
+
 
 GRANT SELECT ON ticket_sales_match_wise TO analyst;
 GRANT SELECT ON match_summary_view TO analyst;
