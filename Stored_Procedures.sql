@@ -200,7 +200,7 @@ BEGIN
         p_price      => 50.00
     );
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE(' Inserting a merchandise with valid data - PASSED');
+    DBMS_OUTPUT.PUT_LINE(' Inserting a merchandise with valid data - successful');
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
@@ -221,7 +221,7 @@ BEGIN
         p_price      => 60.00
     );
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE(' Updating a merchandise with valid data - PASSED');
+    DBMS_OUTPUT.PUT_LINE(' Updating a merchandise with valid data - successful');
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
@@ -235,7 +235,7 @@ BEGIN
         p_item_no    => 'item001'
     );
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE(' Deleting a merchandise with valid data - PASSED');
+    DBMS_OUTPUT.PUT_LINE(' Deleting a merchandise with valid data - successful');
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
