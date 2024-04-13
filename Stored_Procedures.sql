@@ -765,5 +765,71 @@ CREATE OR REPLACE PACKAGE BODY Consolidated_Player_Management AS
 END Consolidated_Player_Management;
 /
 
+-- test Dataset Updations
+
+-- BEGIN
+    Consolidated_Player_Management.add_player(
+        pv_player_id => 'PLR013',
+        pv_club_id => 'CLB001' ,
+        pv_first_name => 'Henry',
+        pv_last_name => 'Thoery',
+        pv_jersey_number => 7,
+        pv_birth_date => TO_DATE('2024-03-30', 'YYYY-MM-DD'),
+        pv_number_of_matches => 290,
+        pv_number_of_goals => 190,
+        pv_number_of_assists => 160,
+        pv_number_of_yellow_cards => 20,
+        pv_number_of_red_cards => 10,
+        pv_wages => 1000,
+        pv_player_type => 'Attacker'
+    );
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+END;
+/
+ 
+select * from player where player_id = 'PLR013';
+ 
+BEGIN
+Consolidated_Player_Management.UPDATE_player(
+    pv_player_id => 'PLR013',
+    pv_club_id => 'CLB001' ,
+    pv_first_name => 'Henry',
+    pv_last_name => 'Thoery',
+    pv_jersey_number => 10,
+    pv_birth_date => TO_DATE('2024-03-30', 'YYYY-MM-DD'),
+    pv_number_of_matches => 290,
+    pv_number_of_goals => 190,
+    pv_number_of_assists => 160,
+    pv_number_of_yellow_cards => 30,
+    pv_number_of_red_cards => 10,
+    pv_player_type => 'Attacker'
+    );
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+END;
+/
+ 
+select * from player where player_id = 'PLR013';
+ 
+BEGIN
+    Consolidated_Player_Management.delete_player(
+        pv_player_id => 'PLR013'
+    );
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+END;
+/
+select * from player where player_id = 'PLR013';
+
 
 
