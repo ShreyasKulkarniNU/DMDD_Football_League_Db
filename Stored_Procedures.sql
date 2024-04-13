@@ -546,3 +546,53 @@ END;
 /
 
 -- SELECT * FROM ticket WHERE ticket_id = 'TCK0010';
+
+-- Deliverables Updation - Consolidated Player Management(CPM) STORED PROCEDURE 
+
+-- set serveroutput on;
+
+-- Enabled LOGS - Server display lines output logs.
+
+-- Package Creation wrapping for Stored procedure CPM Add player procedure 
+-- DECLARATION    
+
+CREATE OR REPLACE PACKAGE Consolidated_Player_Management AS 
+    PROCEDURE add_player (
+        pv_player_id VARCHAR2 DEFAULT NULL,
+        pv_club_id  VARCHAR2 DEFAULT NULL,
+        pv_first_name VARCHAR2 DEFAULT NULL,
+        pv_last_name VARCHAR2 DEFAULT NULL,
+        pv_jersey_number NUMBER DEFAULT NULL,
+        pv_birth_date DATE DEFAULT NULL,
+        pv_number_of_matches NUMBER DEFAULT NULL,
+        pv_number_of_goals NUMBER DEFAULT NULL,
+        pv_number_of_assists NUMBER DEFAULT NULL,
+        pv_number_of_yellow_cards NUMBER DEFAULT NULL,
+        pv_number_of_red_cards NUMBER DEFAULT NULL,
+        pv_wages NUMBER DEFAULT NULL,
+        pv_player_type VARCHAR2 DEFAULT NULL
+    );
+    PROCEDURE update_player (
+        pv_player_id VARCHAR2 DEFAULT NULL,
+        pv_club_id  VARCHAR2 DEFAULT NULL,
+        pv_first_name VARCHAR2 DEFAULT NULL,
+        pv_last_name VARCHAR2 DEFAULT NULL,
+        pv_jersey_number NUMBER DEFAULT NULL,
+        pv_birth_date DATE DEFAULT NULL,
+        pv_number_of_matches NUMBER DEFAULT NULL,
+        pv_number_of_goals NUMBER DEFAULT NULL,
+        pv_number_of_assists NUMBER DEFAULT NULL,
+        pv_number_of_yellow_cards NUMBER DEFAULT NULL,
+        pv_number_of_red_cards NUMBER DEFAULT NULL,
+        pv_wages NUMBER DEFAULT NULL,
+        pv_player_type VARCHAR2 DEFAULT NULL
+    );
+
+    PROCEDURE delete_player (
+        pv_player_id VARCHAR2 DEFAULT NULL
+    );
+
+END Consolidated_Player_Management;
+/
+
+
