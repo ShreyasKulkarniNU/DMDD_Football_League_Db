@@ -208,7 +208,8 @@ CREATE TABLE player (
     number_of_assists NUMBER,
     number_of_yellow_cards NUMBER,
     number_of_red_cards NUMBER,
-    wages             NUMBER
+    wages             NUMBER,
+    birth_date DATE
 );
 
 ALTER TABLE player ADD CONSTRAINT player_pk PRIMARY KEY ( player_id );
@@ -402,15 +403,15 @@ INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, pric
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC007', 'CLB004', 'Madrid Flag', 'River Miller','Accessories', 18.00); 
 INSERT INTO merchandise (item_no, club_id, item_name, buyer_name, category, price) VALUES ('MRC008', 'CLB004', 'Madrid Keychain', 'Jamie Miller','Accessories', 5.50); 
 
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR001', 'CLB001', 'Theory','Henry',10,'Attacker',100,111,199,11,1,1000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR002', 'CLB001', 'Robin','Van Persie',7,'Attacker',111,150,100,6,2,1100000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR003', 'CLB001', 'Andrew','Arshavin',9,'Attacker',101,100,219,11,0,1000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR004', 'CLB001', 'Ben','White',5,'Defender',60,111,189,31,21,1000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR005', 'CLB001', 'Gabriel','Jesus',7,'MidFielder',60,111,189,12,2,1000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR006', 'CLB002', 'Cristiano','Ronaldo',7,'Attacker',200,291,199,17,7,10000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR007', 'CLB002', 'Wayne','Roony',10,'MidFielder',210,201,299,12,1,10000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR008', 'CLB002', 'Harry','Maguire',4,'Defender',200,91,99,22,2,10000000);
-INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages) VALUES ('PLR009', 'CLB002', 'Robin','VonderSaar',1,'GoalKeeper',210,21,100,06,1,10000000);
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR001', 'CLB001', 'Theory','Henry',10,'Attacker',100,111,199,11,1,1000000, TO_DATE('1999-06-04','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR002', 'CLB001', 'Robin','Van Persie',7,'Attacker',111,150,100,6,2,1100000, TO_DATE('1988-08-14','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR003', 'CLB001', 'Andrew','Arshavin',9,'Attacker',101,100,219,11,0,1000000, TO_DATE('1997-05-20','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR004', 'CLB001', 'Ben','White',5,'Defender',60,111,189,31,21,1000000, TO_DATE('1995-07-05','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR005', 'CLB001', 'Gabriel','Jesus',7,'MidFielder',60,111,189,12,2,1000000, TO_DATE('1993-06-04','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR006', 'CLB002', 'Cristiano','Ronaldo',7,'Attacker',200,291,199,17,7,10000000, TO_DATE('1992-06-04','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR007', 'CLB002', 'Wayne','Roony',10,'MidFielder',210,201,299,12,1,10000000, TO_DATE('1990-06-04','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR008', 'CLB002', 'Harry','Maguire',4,'Defender',200,91,99,22,2,10000000, TO_DATE('1989-06-04','YYYY-MM_DD'));
+INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) VALUES ('PLR009', 'CLB002', 'Robin','VonderSaar',1,'GoalKeeper',210,21,100,06,1,10000000, TO_DATE('1998-06-04','YYYY-MM_DD'));
 
 INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR005','Central-Attacking',91,280,398,20,10,90);
 INSERT INTO midfielder (player_id, midfielder_role, number_of_throughballs, total_number_of_chances_created, number_of_passes_completed, number_of_corners, number_of_freekicks, pass_Rating) VALUES ('PLR007','Central-Defensive',85,250,378,25,5,92);
@@ -578,6 +579,8 @@ GRANT SELECT ON ticket_sales_match_wise TO analyst;
 GRANT SELECT ON match_summary_view TO analyst;
 GRANT SELECT ON revenue_of_the_club_through_merchandise TO analyst;
 GRANT SELECT ON player_PerformanceTrack_Attacker_Individual_View TO analyst;
+GRANT SELECT ON Merchandise_Items_View TO analyst;
+GRANT SELECT ON MerchandisePriceRange TO analyst;
 
 
 GRANT SELECT ON match TO customer_access;
