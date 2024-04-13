@@ -15,4 +15,4 @@ Steps to re-run these scripts:
 10. Follow from step 2 and repeat all the steps. 
 
     Note: While re-running, for step 3 - You can reconnect the existing `app_admin` user, you don't need to create a new connection for `app_admin` user again.
-
+Updated Deliverables - Stored procedures and View Reports with Proper Exception handling.
