@@ -595,4 +595,68 @@ CREATE OR REPLACE PACKAGE Consolidated_Player_Management AS
 END Consolidated_Player_Management;
 /
 
+CREATE OR REPLACE PACKAGE BODY Consolidated_Player_Management AS 
+    -- Identified Custom exceptions
+    null_value_found EXCEPTION;
+    invalid_player_id EXCEPTION;
+    invalid_club_id EXCEPTION;
+    argument_mismatch EXCEPTION;
+    invalid_data_type EXCEPTION;
+    out_of_range EXCEPTION;
+    duplicate_key EXCEPTION;
+    invalid_foreign_key EXCEPTION;
+    no_player_found EXCEPTION;
+
+    --binding the custom exceptions with common predefined exception ORA codes
+    PRAGMA EXCEPTION_INIT(argument_mismatch, -6550);
+    PRAGMA EXCEPTION_INIT(invalid_data_type, -6502);
+    PRAGMA EXCEPTION_INIT(out_of_range, -1438);
+    PRAGMA EXCEPTION_INIT(duplicate_key, -1);
+    PRAGMA EXCEPTION_INIT(invalid_foreign_key, -2291);
+
+    PROCEDURE add_player (
+        pv_player_id VARCHAR2 DEFAULT NULL,
+        pv_club_id  VARCHAR2 DEFAULT NULL,
+        pv_first_name VARCHAR2 DEFAULT NULL,
+        pv_last_name VARCHAR2 DEFAULT NULL,
+        pv_jersey_number NUMBER DEFAULT NULL,
+        pv_birth_date DATE DEFAULT NULL,
+        pv_number_of_matches NUMBER DEFAULT NULL,
+        pv_number_of_goals NUMBER DEFAULT NULL,
+        pv_number_of_assists NUMBER DEFAULT NULL,
+        pv_number_of_yellow_cards NUMBER DEFAULT NULL,
+        pv_number_of_red_cards NUMBER DEFAULT NULL,
+        pv_wages NUMBER DEFAULT NULL,
+        pv_player_type VARCHAR2 DEFAULT NULL
+    ) AS 
+        pv_count NUMBER;
+
+ BEGIN
+        
+
+        --INSERTION INTO TABLE
+        INSERT INTO player (player_id, club_id, first_name, last_name, jersey_number, player_type, number_of_matches, number_of_goals, number_of_assists, number_of_yellow_cards, number_of_red_cards, wages, birth_date) 
+        values(pv_player_id, pv_club_id, pv_first_name, pv_last_name, pv_jersey_number, pv_player_type, pv_number_of_matches, pv_number_of_goals, pv_number_of_assists,pv_number_of_yellow_cards, pv_number_of_red_cards, pv_wages, pv_birth_date);
+
+    EXCEPTION 
+        WHEN null_value_found THEN
+            DBMS_OUTPUT.PUT_LINE('Error: One or more required fields are null.');
+        WHEN invalid_player_id THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Invalid player ID provided.');
+        WHEN invalid_club_id THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Invalid club ID provided.');
+        WHEN argument_mismatch THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Number of arguments does not match expected count.');
+        WHEN invalid_data_type THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Invalid data type provided for one or more arguments.');
+        WHEN out_of_range THEN
+            DBMS_OUTPUT.PUT_LINE('Error: One or more arguments are out of allowed range.');
+        WHEN duplicate_key THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Duplicate primary key value encountered.');
+        WHEN invalid_foreign_key THEN
+            DBMS_OUTPUT.PUT_LINE('Error: Invalid foreign key reference.');
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+    END add_player;
+
 
