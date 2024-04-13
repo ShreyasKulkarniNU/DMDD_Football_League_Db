@@ -660,3 +660,110 @@ CREATE OR REPLACE PACKAGE BODY Consolidated_Player_Management AS
     END add_player;
 
 
+
+  PROCEDURE UPDATE_PLAYER (
+        pv_player_id VARCHAR2 DEFAULT NULL,
+        pv_club_id  VARCHAR2 DEFAULT NULL,
+        pv_first_name VARCHAR2 DEFAULT NULL,
+        pv_last_name VARCHAR2 DEFAULT NULL,
+        pv_jersey_number NUMBER DEFAULT NULL,
+        pv_birth_date DATE DEFAULT NULL,
+        pv_number_of_matches NUMBER DEFAULT NULL,
+        pv_number_of_goals NUMBER DEFAULT NULL,
+        pv_number_of_assists NUMBER DEFAULT NULL,
+        pv_number_of_yellow_cards NUMBER DEFAULT NULL,
+        pv_number_of_red_cards NUMBER DEFAULT NULL,
+        pv_wages NUMBER DEFAULT NULL,
+        pv_player_type VARCHAR2 DEFAULT NULL
+    ) AS 
+        pv_count NUMBER;
+        pv_player_not_found EXCEPTION;
+
+    BEGIN
+        -- Check if PLAYER_ID is NULL
+        IF pv_player_id IS NULL THEN
+            RAISE pv_player_not_found;
+        END IF;
+
+        -- Check for valid input formats using regular expressions
+        IF NOT (REGEXP_LIKE(pv_player_id, '^[a-zA-Z0-9\-]*$') OR
+                REGEXP_LIKE(pv_club_id, '^[a-zA-Z0-9\-]*$') OR
+                REGEXP_LIKE(pv_player_type, '^[a-zA-Z0-9\s\-]*$') OR
+                REGEXP_LIKE(pv_first_name, '^[a-zA-Z0-9\s\-]*$') OR
+                REGEXP_LIKE(pv_last_name, '^[a-zA-Z0-9\s\-]*$')) THEN
+            RAISE invalid_data_type;
+        END IF;
+
+        -- Check for numeric fields
+        IF NOT (REGEXP_LIKE(TO_CHAR(pv_wages), '^\d+(\.\d+)?$') OR
+                REGEXP_LIKE(TO_CHAR(pv_jersey_number), '^\d*$')) THEN
+            RAISE invalid_data_type;
+        END IF;
+ 
+        -- Check for valid date
+        IF NOT TO_CHAR(pv_birth_date, 'YYYY-MM-DD') IS NOT NULL THEN
+            RAISE invalid_data_type;
+        END IF;
+
+        -- Check if the Player ID exists from PLAYER Table
+        SELECT COUNT(*) INTO pv_count FROM player WHERE player_id = pv_player_id;
+        IF pv_count = 0 THEN
+            RAISE invalid_player_id;
+        END IF;
+ 
+        -- Check if the CLUB ID is valid or not from CLUB Entity
+        SELECT COUNT(*) INTO pv_count FROM club WHERE club_id = pv_club_id;
+        IF pv_count = 0 THEN
+            RAISE invalid_club_id;
+        END IF;
+        
+
+        -- Update the player with only non-null values provided
+        UPDATE player SET
+            player_id = COALESCE(pv_player_id, player_id),
+            club_id = COALESCE(pv_club_id, club_id),
+            jersey_number = COALESCE(pv_jersey_number, jersey_number),
+            player_type = COALESCE(pV_player_type, player_type),
+            birth_date = COALESCE(pv_birth_date, birth_date),
+            first_name = COALESCE(pv_first_name, first_name),
+            last_name = COALESCE(pv_last_name,last_name)
+        WHERE player_id = pv_player_id;
+
+        -- Check if any row was updated
+        IF SQL%ROWCOUNT = 0 THEN
+            RAISE pv_player_not_found;
+        END IF;
+
+    EXCEPTION 
+        WHEN pv_player_not_found THEN
+          DBMS_OUTPUT.PUT_LINE('Error: No player found with provided player ID');
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+    END update_player;
+
+    PROCEDURE delete_player(
+        pv_player_id        VARCHAR2 DEFAULT NULL
+    ) AS
+    BEGIN
+        -- Check if player ID is NULL
+        IF pv_player_id IS NULL THEN
+            RAISE no_player_found;
+        END IF;
+        DELETE FROM player WHERE player_id = pv_player_id;
+ 
+        IF SQL%ROWCOUNT = 0 THEN
+            RAISE no_player_found;
+        END IF;
+ 
+    EXCEPTION
+        WHEN no_player_found THEN
+            DBMS_OUTPUT.PUT_LINE('Error: No player found with the provided ID to delete.');
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || LTRIM(SUBSTR(SQLERRM, INSTR(SQLERRM, ':') + 1)));
+    END delete_player;
+ 
+END Consolidated_Player_Management;
+/
+
+
+
